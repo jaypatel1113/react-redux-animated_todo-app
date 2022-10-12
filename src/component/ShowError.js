@@ -1,28 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const errorVar = {
     hidden: {
-        opacity: 0,
-        // x: "-100vw",
+        // opacity: 0,
+        x: "-100vw",
     },
     visible: {
-        opacity: 1,
-        // x: 0,
+        // opacity: 1,
+        x: 0,
     },
     exit: {
-        // x: "100vw",
-        opacity: 0,
+        x: "100vw",
+        // opacity: 0,
         // transition: { ease: "easeInOut", type: "spring" },
     },
 };
 
-const ShowError = ({ setIsError }) => {
-    useEffect(() => {
-        setTimeout(() => {
-            setIsError(false);
-        }, 2500);
-    }, [setIsError]);
+const ShowError = () => {
 
     return (
         <>

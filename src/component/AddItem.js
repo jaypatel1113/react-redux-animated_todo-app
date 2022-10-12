@@ -3,11 +3,24 @@ import { motion } from "framer-motion";
 import {useDispatch} from "react-redux";
 
 import {addTodo} from "../actions/index";
+import ShowError from "./ShowError";
 
 const AddItem = () => {
     const [inpData, setInpData] = useState('');
+    const [isError, setIsError] = useState(false);
 
     const dispatch = useDispatch();
+
+    const handleAdd = () => {
+        if(inpData === "") {
+            setIsError(true)
+            setTimeout(() => {
+                setIsError(false);
+            }, 2500);
+            return;
+        };
+        dispatch(addTodo(inpData), setInpData(''));
+    }
 
     return (
         <>
@@ -25,8 +38,11 @@ const AddItem = () => {
                 <i
                     className="fa fa-plus add-btn"
                     title="Add Item"
-                    onClick={() => dispatch(addTodo(inpData), setInpData(''))}
+                    onClick={handleAdd}
                 ></i>
+            </motion.div>
+            <motion.div>
+                {isError && (<ShowError />)}
             </motion.div>
         </>
     );

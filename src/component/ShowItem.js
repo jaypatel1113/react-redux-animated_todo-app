@@ -11,24 +11,22 @@ const ShowItem = () => {
 
     return (
         <>
-            <AnimatePresence>
                 <motion.div
                     className="showItems"
                     initial={{ x: "100vw" }}
                     animate={{ x: 0 }}
                     transition={{ delay: 2, type: "spring", stiffness: 150 }}
-                    exit={{ x: "-100vw"}}
-                >
+                    >
+                    <AnimatePresence>
                     {list.map((elem) => {
                         return (
-                            <AnimatePresence>
                             <motion.div
                                 className="eachItem"
                                 key={elem.id}
                                 initial={{ x: "100vw" }}
                                 animate={{ x: 0 }}
                                 // transition={{type:'spring', stiffness: 150}}
-                                exit={{ x: "-100vw", scale: [1,0]}}
+                                exit={{ x: "-100vw"}}
                             >
                                 <h3>{elem.data}</h3>
                                 <div className="todo-btn">
@@ -42,11 +40,10 @@ const ShowItem = () => {
                                     ></motion.i>
                                 </div>
                             </motion.div>
-                            </AnimatePresence>
                         );
                     })}
+                    </AnimatePresence>
                 </motion.div>
-            </AnimatePresence>
         </>
     );
 };
